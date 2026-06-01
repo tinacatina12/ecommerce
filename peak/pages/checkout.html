@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-theme="light"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Checkout — Peak Investments</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="../css/style.css"/>
+</head><body>
+<div id="pi-header"></div>
+<main class="container-xxl py-4">
+  <h2 class="fw-bold mb-3"><i class="fa-solid fa-credit-card me-2"></i>Checkout</h2>
+  <form id="coForm" class="row g-4">
+    <div class="col-lg-8">
+      <div class="card-pi p-4 mb-3">
+        <h6 class="fw-bold mb-3"><i class="fa-solid fa-user me-2"></i>Contact</h6>
+        <div class="row g-3">
+          <div class="col-md-6"><label class="form-label small">Full name</label><input required class="form-control" name="name" placeholder="Sarah Nakato"/></div>
+          <div class="col-md-6"><label class="form-label small">Phone</label><input required class="form-control" name="phone" placeholder="+256 7xx xxx xxx"/></div>
+          <div class="col-12"><label class="form-label small">Email</label><input required type="email" class="form-control" name="email" placeholder="you@email.com"/></div>
+        </div>
+      </div>
+      <div class="card-pi p-4 mb-3">
+        <h6 class="fw-bold mb-3"><i class="fa-solid fa-truck me-2"></i>Delivery method</h6>
+        <div class="row g-2">
+          ${''}
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="ship" value="boda" data-fee="8000" checked/><div><div class="fw-bold">Same-day boda · Central Kampala</div><div class="small text-muted">UGX 8,000 · 1–4 hours</div></div></label></div>
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="ship" value="courier" data-fee="20000"/><div><div class="fw-bold">Courier · Wakiso & Entebbe</div><div class="small text-muted">UGX 20,000 · Next-day</div></div></label></div>
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="ship" value="bus" data-fee="35000"/><div><div class="fw-bold">Upcountry bus parcel</div><div class="small text-muted">UGX 35,000 · 1–3 days</div></div></label></div>
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="ship" value="pickup" data-fee="0"/><div><div class="fw-bold">In-store pickup · Lukadde Rd</div><div class="small text-muted">FREE · Free parking</div></div></label></div>
+        </div>
+        <div class="row g-3 mt-2" id="addrRow">
+          <div class="col-12"><label class="form-label small">Delivery address</label><input class="form-control" name="address" placeholder="Plot, road, area"/></div>
+          <div class="col-md-6"><label class="form-label small">City / Town</label><input class="form-control" name="city" value="Kampala"/></div>
+          <div class="col-md-6"><label class="form-label small">Notes (optional)</label><input class="form-control" name="notes" placeholder="Landmark, gate code..."/></div>
+        </div>
+      </div>
+      <div class="card-pi p-4">
+        <h6 class="fw-bold mb-3"><i class="fa-solid fa-wallet me-2"></i>Payment method</h6>
+        <div class="row g-2">
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="pay" value="MTN MoMo" checked/><div><div class="fw-bold"><i class="fa-solid fa-mobile-screen text-warning"></i> MTN Mobile Money</div><div class="small text-muted">Pay via MoMo prompt</div></div></label></div>
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="pay" value="Airtel Money"/><div><div class="fw-bold"><i class="fa-solid fa-mobile-screen text-danger"></i> Airtel Money</div><div class="small text-muted">Secure USSD push</div></div></label></div>
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="pay" value="Visa / Mastercard"/><div><div class="fw-bold"><i class="fa-brands fa-cc-visa text-primary"></i> Visa / Mastercard</div><div class="small text-muted">Pesapal · Flutterwave</div></div></label></div>
+          <div class="col-md-6"><label class="card-pi p-3 d-flex gap-2 m-0"><input type="radio" name="pay" value="Cash on delivery"/><div><div class="fw-bold"><i class="fa-solid fa-money-bill-wave text-success"></i> Cash on delivery</div><div class="small text-muted">Pay rider on arrival</div></div></label></div>
+        </div>
+        <div class="alert alert-light border mt-3 small mb-0"><i class="fa-solid fa-shield-halved text-success me-2"></i>Payments are simulated in this demo. Backend integration points are ready for Pesapal, Flutterwave or DPO.</div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="card-pi p-4 position-sticky" style="top:96px">
+        <h5 class="fw-bold">Order summary</h5>
+        <div id="ord" class="mt-2"></div>
+        <hr/>
+        <div class="d-flex justify-content-between"><span>Subtotal</span><strong id="sub"></strong></div>
+        <div class="d-flex justify-content-between"><span>Delivery</span><strong id="ship">UGX 8,000</strong></div>
+        <hr/>
+        <div class="d-flex justify-content-between h5"><span>Total</span><strong id="tot"></strong></div>
+        <button type="submit" class="btn btn-success btn-lg w-100 mt-3"><i class="fa-solid fa-check"></i> Place order</button>
+        <a href="cart.html" class="btn btn-ghost w-100 mt-2"><i class="fa-solid fa-arrow-left"></i> Back to cart</a>
+      </div>
+    </div>
+  </form>
+</main>
+<div id="pi-footer"></div><div id="pi-bottom"></div><div id="pi-fab"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../js/data.js"></script><script src="../js/app.js"></script><script src="../js/ui.js"></script><script src="../js/layout.js"></script>
+<script>
+PILayout.mount('shop');
+function fee(){const f=document.querySelector('input[name=ship]:checked');return +f.dataset.fee;}
+function render(){
+  const c=PI.cart();
+  if(!c.length){document.getElementById('ord').innerHTML='<div class="text-muted small">Cart is empty</div>';return;}
+  document.getElementById('ord').innerHTML = c.map(i=>{const p=PI.findProduct(i.id);return `<div class="d-flex justify-content-between small mb-2"><span>${p.emoji} ${p.name} × ${i.qty}</span><strong>${PI.fmt(p.price*i.qty)}</strong></div>`}).join('');
+  document.getElementById('sub').textContent=PI.fmt(PI.cartTotal());
+  document.getElementById('ship').textContent=PI.fmt(fee());
+  document.getElementById('tot').textContent=PI.fmt(PI.cartTotal()+fee());
+}
+document.querySelectorAll('input[name=ship]').forEach(r=>r.addEventListener('change',render));
+render();
+document.getElementById('coForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  if(!PI.cart().length){PI.toast('Cart is empty','warning');return;}
+  const fd=new FormData(e.target);
+  const order={id:'PI-'+Math.floor(10000+Math.random()*90000),customer:fd.get('name'),email:fd.get('email'),phone:fd.get('phone'),
+    items:PI.cart().reduce((s,i)=>s+i.qty,0),total:PI.cartTotal()+fee(),status:'pending',date:new Date().toISOString(),
+    payment:fd.get('pay'),shipping:fd.get('ship'),address:fd.get('address')||'In-store pickup',lines:PI.cart()};
+  Swal.fire({title:'Processing payment...',html:'Confirming with '+fd.get('pay'),timer:1600,timerProgressBar:true,didOpen:()=>Swal.showLoading(),allowOutsideClick:false}).then(()=>{
+    PI.placeOrder(order); PI.clearCart();
+    Swal.fire({icon:'success',title:'Order placed!',html:`Reference <b>${order.id}</b><br/>Total <b>${PI.fmt(order.total)}</b>`,confirmButtonText:'View my orders'}).then(()=>location.href='account.html#orders');
+  });
+});
+</script>
+</body></html>
